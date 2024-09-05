@@ -59,8 +59,8 @@ ament_target_dependencies(
 add_library(
   kr_robot_driver
   SHARED
-  hardware/r6bot_hardware.cpp
-  controller/r6bot_controller.cpp
+  hardware/kr810_hardware.cpp
+  controller/kr810_controller.cpp
 )
 
 target_compile_features(kr_robot_driver PUBLIC cxx_std_17)

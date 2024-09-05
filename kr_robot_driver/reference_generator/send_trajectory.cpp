@@ -26,7 +26,7 @@ int main(int argc, char ** argv)
   rclcpp::init(argc, argv);
   auto node = std::make_shared<rclcpp::Node>("send_trajectory");
   auto pub = node->create_publisher<trajectory_msgs::msg::JointTrajectory>(
-    "/r6bot_controller/joint_trajectory", 10);
+    "/kr810_controller/joint_trajectory", 10);
 
   // get robot description
   auto robot_param = rclcpp::Parameter();
@@ -38,7 +38,8 @@ int main(int argc, char ** argv)
   KDL::Tree robot_tree;
   KDL::Chain chain;
   kdl_parser::treeFromString(robot_description, robot_tree);
-  robot_tree.getChain("base_link", "tool0", chain);
+  // robot_tree.getChain("base_link", "tool0", chain);
+  robot_tree.getChain("base", "end_effector", chain);
 
   auto joint_positions = KDL::JntArray(chain.getNrOfJoints());
   auto joint_velocities = KDL::JntArray(chain.getNrOfJoints());
