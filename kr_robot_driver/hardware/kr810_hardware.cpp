@@ -100,7 +100,8 @@ std::vector<hardware_interface::CommandInterface> RobotSystem::export_command_in
 
 return_type RobotSystem::read(const rclcpp::Time & /*time*/, const rclcpp::Duration & period)
 {
-  // TODO(pac48) set sensor_states_ values from subscriber
+
+  // Mock interface from the demo, actual values are identical to commanded
 
   for (auto i = 0ul; i < joint_velocities_command_.size(); i++)
   {
@@ -112,6 +113,8 @@ return_type RobotSystem::read(const rclcpp::Time & /*time*/, const rclcpp::Durat
   {
     joint_position_[i] = joint_position_command_[i];
   }
+
+  // Reading the state from the KORD API
 
   return return_type::OK;
 }
