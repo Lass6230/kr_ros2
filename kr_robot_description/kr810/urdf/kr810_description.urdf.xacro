@@ -72,6 +72,9 @@
       </collision>
   </xacro:macro>
 
+  <link name="world"/>
+
+
   <link name="base">
 
     <xacro:property name="base_outer_radius" value="${ 80 * scale}" />
@@ -391,6 +394,12 @@
   </link>
 
   <!-- joints -->
+  <joint name="dummy" type="fixed">
+    <parent link="world"/>
+    <child link="base"/>
+  </joint>
+
+
   <joint name="joint_1" type="continuous">
     <parent link="base"/>
     <child link="link1"/>

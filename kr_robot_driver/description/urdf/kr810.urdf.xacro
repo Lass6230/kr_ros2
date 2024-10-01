@@ -3,10 +3,6 @@
 
   <!-- Import kr810 macro -->
   <xacro:include filename="$(find kr_robot_description)/kr810/urdf/kr810_description.urdf.xacro"/>
-
-  <!-- create link fixed to the "world" -->
-  <!-- <link name="world"/> -->
-
   <xacro:kr810_description/>
 
   <!-- Import r6bot ros2_control description -->
