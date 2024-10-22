@@ -88,13 +88,6 @@ std::vector<hardware_interface::CommandInterface> RobotSystem::export_command_in
     command_interfaces.emplace_back(joint_name, "velocity", &joint_velocities_command_[ind++]);
   }
 
-  command_interfaces.emplace_back("tcp_fts_sensor", "force.x", &ft_command_[0]);
-  command_interfaces.emplace_back("tcp_fts_sensor", "force.y", &ft_command_[1]);
-  command_interfaces.emplace_back("tcp_fts_sensor", "force.z", &ft_command_[2]);
-  command_interfaces.emplace_back("tcp_fts_sensor", "torque.x", &ft_command_[3]);
-  command_interfaces.emplace_back("tcp_fts_sensor", "torque.y", &ft_command_[4]);
-  command_interfaces.emplace_back("tcp_fts_sensor", "torque.z", &ft_command_[5]);
-
   return command_interfaces;
 }
 
