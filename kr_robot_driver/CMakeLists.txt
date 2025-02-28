@@ -60,7 +60,7 @@ add_library(
   kr_robot_driver
   SHARED
   hardware/kr810_hardware.cpp
-  controller/kr810_controller.cpp
+  # controller/kr810_controller.cpp
 )
 
 target_compile_features(kr_robot_driver PUBLIC cxx_std_17)
@@ -110,7 +110,7 @@ if(BUILD_TESTING)
 
   ament_add_pytest_test(example_7_urdf_xacro test/test_urdf_xacro.py)
   ament_add_pytest_test(view_example_7_launch test/test_view_robot_launch.py)
-  ament_add_pytest_test(run_example_7_launch test/test_r6bot_controller_launch.py)
+  # ament_add_pytest_test(run_example_7_launch test/test_r6bot_controller_launch.py)
 endif()
 
 ## EXPORTS
