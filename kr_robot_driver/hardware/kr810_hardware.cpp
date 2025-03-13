@@ -16,6 +16,8 @@
 #include <string>
 #include <vector>
 
+using namespace kr2;
+
 namespace kr_robot_driver
 {
 CallbackReturn RobotSystem::on_init(const hardware_interface::HardwareInfo & info)
@@ -42,6 +44,25 @@ CallbackReturn RobotSystem::on_init(const hardware_interface::HardwareInfo & inf
       joint_interfaces[interface.name].push_back(joint.name);
     }
   }
+  std::shared_ptr<kord::KordCore> kord(new kord::KordCore("192.168.39.1", 7582, 1, kord::UDP_CLIENT));
+  kord::ControlInterface ctl_iface(kord);
+    kord::ReceiverInterface rcv_iface(kord);
+  // Establish connection to the robot's CBun.
+  if (!kord->connect()) {
+    std::cout << "Connecting to KR failed\n";
+    return CallbackReturn::ERROR;
+  }
+
+  // Send ArmStatus request to initiate control session.
+  if (!kord->syncRC()){
+    std::cout << "Sync RC failed.\n";
+    return CallbackReturn::ERROR;
+  }
+
+  std::cout << "Sync Captured \n";
+  rcv_iface.fetchData();
+  std::array<double, 7UL> start_q = rcv_iface.getJoint(kord::ReceiverInterface::EJointValue::S_ACTUAL_Q);
+
 
   return CallbackReturn::SUCCESS;
 }

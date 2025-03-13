@@ -19,6 +19,15 @@
 #include "unordered_map"
 #include "vector"
 
+
+#include <kord/api/kord.h>
+#include <kord/api/kord_control_interface.h>
+#include <kord/api/kord_receive_interface.h>
+#include <kord/utils/utils.h>
+// #include <kord_api/include/kord/api/kord_control_interface.h>
+// #include <kord/api/kord_control_interface.h>
+// #include <kord_api/include/kord/api/kord_control_interface.h>
+// #include <kord_api/include/kord/api/kord_receive_interface.h>
 #include "hardware_interface/handle.hpp"
 #include "hardware_interface/hardware_info.hpp"
 #include "hardware_interface/system_interface.hpp"

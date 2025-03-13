@@ -56,18 +56,23 @@ ament_target_dependencies(
   ${REF_GEN_INCLUDE_DEPENDS}
 )
 
+find_package(kord_api)
+
 add_library(
   kr_robot_driver
   SHARED
   hardware/kr810_hardware.cpp
   # controller/kr810_controller.cpp
 )
+target_link_libraries(kr_robot_driver PRIVATE kord_api::kord_api)
+target_include_directories(kr_robot_driver PRIVATE ${kord_api_INCLUDE_DIRS})
 
 target_compile_features(kr_robot_driver PUBLIC cxx_std_17)
 target_include_directories(kr_robot_driver PUBLIC
 $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/hardware/include>
 $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/controller/include>
 $<INSTALL_INTERFACE:include/kr_robot_driver>
+
 )
 ament_target_dependencies(
   kr_robot_driver PUBLIC
