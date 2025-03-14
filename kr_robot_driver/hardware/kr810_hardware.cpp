@@ -58,11 +58,19 @@ CallbackReturn RobotSystem::on_init(const hardware_interface::HardwareInfo & inf
     std::cout << "Sync RC failed.\n";
     return CallbackReturn::ERROR;
   }
-
+  if (!kord->waitSync(std::chrono::milliseconds(10), 1)){
+    std::cout << "Sync RC failed.\n";
+    return CallbackReturn::ERROR;
+    // return EXIT_FAILURE;
+}
   std::cout << "Sync Captured \n";
   rcv_iface.fetchData();
+  unsigned int digital_output = rcv_iface.getDigitalOutput();
+  std::cout << rcv_iface.getFormattedOutputBits() << std::endl;
   std::array<double, 7UL> start_q = rcv_iface.getJoint(kord::ReceiverInterface::EJointValue::S_ACTUAL_Q);
-
+  std::cout << "Sync Captured \n";
+  std::cout <<"joints values: "<< start_q[0] << std::endl;
+  std::cout << "Sync Captured \n";
 
   return CallbackReturn::SUCCESS;
 }

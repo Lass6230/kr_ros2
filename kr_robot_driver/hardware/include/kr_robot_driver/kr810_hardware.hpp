@@ -61,6 +61,7 @@ protected:
   std::vector<double> joint_velocities_;
   std::vector<double> ft_states_;
   std::vector<double> ft_command_;
+  
 
   std::unordered_map<std::string, std::vector<std::string>> joint_interfaces = {
     {"position", {}}, {"velocity", {}}};
